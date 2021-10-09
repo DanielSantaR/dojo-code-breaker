@@ -1,20 +1,19 @@
 version: 2.1
-
 executors:
-  code-breaker:
+  my-custom-executor:
     docker:
-      - image: circleci/node@4.7
-
+      - image: cimg/node:lts
+      
 jobs:
-  test:
-    executor: code-breaker
+  run-my-test:
+    executor: my-custom-executor
     steps:
       - checkout
       - run: |
-          # echo Hello, World!
           npm install
-          npm run test
+          npm test
+
 workflows:
   my-custom-workflow:
     jobs:
-      - test
+      - run-my-test

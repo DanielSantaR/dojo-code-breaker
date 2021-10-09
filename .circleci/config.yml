@@ -1,0 +1,19 @@
+version: 2.1
+executors:
+  code-breaker:
+    docker:
+      - image: cimg/base:stable
+      
+jobs:
+  tests:
+
+    executor: code-breaker
+    steps:
+      - checkout
+      - run: |
+          npm run test
+
+workflows:
+  code-breaker-workflow:
+    jobs:
+      - tests
